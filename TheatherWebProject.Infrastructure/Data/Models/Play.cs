@@ -30,10 +30,10 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required ICollection<Actor> Actors { get; set; } = new HashSet<Actor>();
 
-		public required ICollection<User> UsersFavouritePlays { get; set; } = new HashSet<User>();
-		public required ICollection<User> UsersLikedPlays { get; set; } = new HashSet<User>();
-		public required ICollection<User> UsersGoingToPlays { get; set; } = new HashSet<User>();
-		public required ICollection<User> UsersWatchedPlays { get; set; } = new HashSet<User>();
+		public required ICollection<ApplicationUser> ApplicationUsersFavouritePlays { get; set; } = new HashSet<ApplicationUser>();
+		public required ICollection<ApplicationUser> ApplicationUsersLikedPlays { get; set; } = new HashSet<ApplicationUser>();
+		public required ICollection<ApplicationUser> ApplicationUsersGoingToPlays { get; set; } = new HashSet<ApplicationUser>();
+		public required ICollection<ApplicationUser> ApplicationUsersWatchedPlays { get; set; } = new HashSet<ApplicationUser>();
 
 
 

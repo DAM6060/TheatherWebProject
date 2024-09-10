@@ -15,28 +15,28 @@ namespace TheatherWebProject.Data
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			// FavouritePlays many-to-many relationship
-			builder.Entity<User>()
+			builder.Entity<ApplicationUser>()
 				.HasMany(u => u.FavouritePlays)
-				.WithMany(p => p.UsersFavouritePlays)
-				.UsingEntity(j => j.ToTable("UserFavouritePlays"));
+				.WithMany(p => p.ApplicationUsersFavouritePlays)
+				.UsingEntity(j => j.ToTable("ApplicationUserFavouritePlays"));
 
 			// LikedPlays many-to-many relationship
-			builder.Entity<User>()
+			builder.Entity<ApplicationUser>()
 				.HasMany(u => u.LikedPlays)
-				.WithMany(p => p.UsersLikedPlays)
-				.UsingEntity(j => j.ToTable("UserLikedPlays"));
+				.WithMany(p => p.ApplicationUsersLikedPlays)
+				.UsingEntity(j => j.ToTable("ApplicationUserLikedPlays"));
 
 			// GoingToPlays many-to-many relationship
-			builder.Entity<User>()
+			builder.Entity<ApplicationUser>()
 				.HasMany(u => u.GoingToPlays)
-				.WithMany(p => p.UsersGoingToPlays)
-				.UsingEntity(j => j.ToTable("UserGoingToPlays"));
+				.WithMany(p => p.ApplicationUsersGoingToPlays)
+				.UsingEntity(j => j.ToTable("ApplicationUserGoingToPlays"));
 
 			// WatchedPlays many-to-many relationship
-			builder.Entity<User>()
+			builder.Entity<ApplicationUser>()
 				.HasMany(u => u.WatchedPlays)
-				.WithMany(p => p.UsersWatchedPlays)
-				.UsingEntity(j => j.ToTable("UserWatchedPlays"));
+				.WithMany(p => p.ApplicationUsersWatchedPlays)
+				.UsingEntity(j => j.ToTable("ApplicationUserWatchedPlays"));
 
 			base.OnModelCreating(builder);
 
@@ -48,6 +48,6 @@ namespace TheatherWebProject.Data
 
 		public DbSet<Comment> Comments { get; set; } = null!;
 
-		public DbSet<User> Users { get; set; } = null!;
+		public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
 	}
 }

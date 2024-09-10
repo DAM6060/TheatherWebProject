@@ -17,8 +17,8 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 		public required int PlayId { get; set; }
 		public Play Play { get; set; } = null!;
 
-		public required int UserId { get; set; }
-		public User User { get; set; } = null!;
+		public required int ApplicationUserId { get; set; }
+		public ApplicationUser User { get; set; } = null!;
 
 		
 	}

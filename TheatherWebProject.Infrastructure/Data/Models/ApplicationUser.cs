@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TheatherWebProject.Infrastructure.Data.Models
 {
-	public class User
+	public class ApplicationUser
 	{
 		[Key]
 		public int Id { get; set; }
