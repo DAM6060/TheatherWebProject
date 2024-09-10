@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="DataConstants\" />
-    <Folder Include="Data\Models\" />
     <Folder Include="Data\Common\" />
     <Folder Include="Data\SeedData\" />
   </ItemGroup>
