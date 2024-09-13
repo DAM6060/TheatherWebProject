@@ -28,14 +28,14 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required string TicketURL { get; set; } = string.Empty;
 
-		public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+		public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-		public required ICollection<Actor> Actors { get; set; } = new HashSet<Actor>();
+		public ICollection<ActorPlay> ActorsPlays { get; set; } = new List<ActorPlay>();
 
-		public  ICollection<ApplicationUser> ApplicationUsersFavouritePlays { get; set; } = new HashSet<ApplicationUser>();
-		public  ICollection<ApplicationUser> ApplicationUsersLikedPlays { get; set; } = new HashSet<ApplicationUser>();
-		public  ICollection<ApplicationUser> ApplicationUsersGoingToPlays { get; set; } = new HashSet<ApplicationUser>();
-		public  ICollection<ApplicationUser> ApplicationUsersWatchedPlays { get; set; } = new HashSet<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersFavouritePlays { get; set; } = new List<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersLikedPlays { get; set; } = new List<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersGoingToPlays { get; set; } = new List<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersWatchedPlays { get; set; } = new List<ApplicationUser>();
 
 
 

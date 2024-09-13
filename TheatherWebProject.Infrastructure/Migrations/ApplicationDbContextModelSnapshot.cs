@@ -8,7 +8,7 @@ using TheatherWebProject.Data;
 
 #nullable disable
 
-namespace TheatherWebProject.Data.Migrations
+namespace TheatherWebProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -21,21 +21,6 @@ namespace TheatherWebProject.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ActorPlay", b =>
-                {
-                    b.Property<int>("ActorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlaysId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ActorsId", "PlaysId");
-
-                    b.HasIndex("PlaysId");
-
-                    b.ToTable("ActorPlay");
-                });
 
             modelBuilder.Entity("ApplicationUserPlay", b =>
                 {
@@ -212,6 +197,40 @@ namespace TheatherWebProject.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "254d37dd-51e3-4cca-8aa6-a81e98e50d09",
+                            Email = "ddimitar98@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DDIMITAR98@GMAIL.COM",
+                            NormalizedUserName = "ddimitar98@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJmq/93XDB84/8+DDuSHky8V4UQXypm4YUsJRbXL6+gvo4CxS6/PNNdXj8+sjfirHw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c8cfaf3f-924c-4a1a-bc69-a7c69ed0945b",
+                            TwoFactorEnabled = false,
+                            UserName = "ddimitar98@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6549b8af-08dd-4f0d-8dc9-0fced5c94fe9",
+                            Email = "varnasharks.afc@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM",
+                            NormalizedUserName = "VARNASHARKS.AFC@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFyOMgPp153rvaoGhzyjNnpUxscTyV+D575vZ58OD8IB3MLAz6bF+0sq/TU03KJPwA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "89f4f2c9-2338-476d-9735-bfb3c842b63f",
+                            TwoFactorEnabled = false,
+                            UserName = "varnasharks.afc@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -326,6 +345,38 @@ namespace TheatherWebProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Actors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActorImageURL = "C:\\Users\\ddimi\\source\\repos\\TheatherWebProject\\TheatherWebProject.Infrastructure\\Data\\LocalImageSotrage\\153265986_2893861524220139_5094173891309400300_n.jpg",
+                            Description = "Alex Dimitrova is a young and talented actor who has been in the industry for 5 years. She has starred in a number of successful films and TV shows and has received critical acclaim for her performances. She is known for her versatility and ability to bring depth and emotion to her characters. Alex is a dedicated and hard-working actor who is always looking to challenge herself and push the boundaries of her craft. She is passionate about her work and is committed to delivering the best possible performance in every role she takes on.",
+                            FirstName = "Alex",
+                            LastName = "Dimitrova"
+                        });
+                });
+
+            modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.ActorPlay", b =>
+                {
+                    b.Property<int>("ActorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlayId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorId", "PlayId");
+
+                    b.HasIndex("PlayId");
+
+                    b.ToTable("ActorsPlays");
+
+                    b.HasData(
+                        new
+                        {
+                            ActorId = 1,
+                            PlayId = 1
+                        });
                 });
 
             modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", b =>
@@ -349,6 +400,14 @@ namespace TheatherWebProject.Data.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("ApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayName = "Dimitar Dimitrov",
+                            IdentityUserId = "dea12856-c198-4129-b3f3-b893d8395082"
+                        });
                 });
 
             modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.Comment", b =>
@@ -379,6 +438,16 @@ namespace TheatherWebProject.Data.Migrations
                     b.HasIndex("PlayId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationUserId = 1,
+                            Content = "This is a great play! I highly recommend it to everyone!",
+                            CreatedOn = new DateTime(2025, 12, 15, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            PlayId = 1
+                        });
                 });
 
             modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.Play", b =>
@@ -423,21 +492,20 @@ namespace TheatherWebProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Plays");
-                });
 
-            modelBuilder.Entity("ActorPlay", b =>
-                {
-                    b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Actor", null)
-                        .WithMany()
-                        .HasForeignKey("ActorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", null)
-                        .WithMany()
-                        .HasForeignKey("PlaysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateAndTime = new DateTime(2025, 12, 15, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and along with Hamlet, is one of his most frequently performed plays. Today, the title characters are regarded as archetypal young lovers.",
+                            Genre = "Comedy",
+                            Location = "Opera Varna, CenterOdesos, pl. \"Nezavisimost\" 1, 9000 Varna",
+                            PlayImagesURLs = "[\"C:\\\\Users\\\\ddimi\\\\source\\\\repos\\\\TheatherWebProject\\\\TheatherWebProject.Infrastructure\\\\Data\\\\LocalImageSotrage\\\\IMG_0843(i).jpg\",\"C:\\\\Users\\\\ddimi\\\\source\\\\repos\\\\TheatherWebProject\\\\TheatherWebProject.Infrastructure\\\\Data\\\\LocalImageSotrage\\\\dyslexia card.jpg\"]",
+                            PlayVideosURLs = "[\"https://www.youtube.com/watch?v=CCI3XPFjqn8\"]",
+                            TicketURL = "https://www.eventim.bg/bg/",
+                            Title = "Romeo and Juliet"
+                        });
                 });
 
             modelBuilder.Entity("ApplicationUserPlay", b =>
@@ -551,6 +619,25 @@ namespace TheatherWebProject.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.ActorPlay", b =>
+                {
+                    b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Actor", "Actor")
+                        .WithMany("ActorsPlays")
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", "Play")
+                        .WithMany("ActorsPlays")
+                        .HasForeignKey("PlayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Actor");
+
+                    b.Navigation("Play");
+                });
+
             modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
@@ -581,8 +668,15 @@ namespace TheatherWebProject.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.Actor", b =>
+                {
+                    b.Navigation("ActorsPlays");
+                });
+
             modelBuilder.Entity("TheatherWebProject.Infrastructure.Data.Models.Play", b =>
                 {
+                    b.Navigation("ActorsPlays");
+
                     b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618

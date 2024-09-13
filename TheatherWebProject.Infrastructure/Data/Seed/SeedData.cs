@@ -11,6 +11,7 @@ namespace TheatherWebProject.Infrastructure.Data.Seed
 			SeedApplicationUsers();
 			SeedActor();
 			SeedPlay();
+			ActorPlay();
 			SeedComment();
 		}
 
@@ -27,6 +28,8 @@ namespace TheatherWebProject.Infrastructure.Data.Seed
 		public Play Play { get; set; }
 
 		public Comment Comment { get; set; }
+
+		public ActorPlay ActorPlay1 { get; set; }
 
 		private void SeedIdentityUsers()
 		{
@@ -91,8 +94,6 @@ namespace TheatherWebProject.Infrastructure.Data.Seed
 			{
 				Id = 1,
 				Content = "This is a great play! I highly recommend it to everyone!",
-				Play = Play,
-				User = User1,
 				PlayId = Play.Id,
 				ApplicationUserId = User1.Id,
 				CreatedOn = new DateTime(2025, 12, 15, 19, 30, 0)
@@ -112,16 +113,19 @@ namespace TheatherWebProject.Infrastructure.Data.Seed
 				Location = "Opera Varna, CenterOdesos, pl. \"Nezavisimost\" 1, 9000 Varna",
 				DateAndTime = new DateTime(2025, 12, 15, 19, 30, 0),
 				TicketURL = "https://www.eventim.bg/bg/",
-				Actors = [AlexDimitrova],
-				ApplicationUsersFavouritePlays = [User1],
-				ApplicationUsersLikedPlays = [User1],
-				ApplicationUsersGoingToPlays = [User1],
-				ApplicationUsersWatchedPlays = [User1],
-				Comments = [Comment],
 				Genre = "Comedy"
 
 			};
 		}
+		private void ActorPlay()
+		{
+			ActorPlay1 = new ActorPlay
+			{
+				ActorId = AlexDimitrova.Id,
+				PlayId = Play.Id
+			};
+		}
+
 		 
 	}
 }

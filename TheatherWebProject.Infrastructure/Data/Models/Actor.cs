@@ -15,7 +15,7 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required string ActorImageURL { get; set; } = string.Empty;
 
-		public List<Play> Plays { get; set; } = new List<Play>();
+		public List<ActorPlay> ActorsPlays { get; set; } = new List<ActorPlay>();
 
 
 

@@ -4,13 +4,13 @@ using TheatherWebProject.Infrastructure.Data.Models;
 
 namespace TheatherWebProject.Infrastructure.Data.Seed.Configurations
 {
-	public class PlayConfiguration : IEntityTypeConfiguration<Play>
+	public class ActorPlayConfiguration : IEntityTypeConfiguration<ActorPlay>
 	{
-		public void Configure(EntityTypeBuilder<Play> builder)
+		public void Configure(EntityTypeBuilder<ActorPlay> builder)
 		{
 			var data = new SeedData();
 
-			builder.HasData(data.Play);
+			builder.HasData(data.ActorPlay1);
 		}
 	}
 }
