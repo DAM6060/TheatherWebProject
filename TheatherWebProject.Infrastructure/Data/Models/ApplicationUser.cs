@@ -14,10 +14,13 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 		[Key]
 		public int Id { get; set; }
 
+		public required string DisplayName { get; set; } = string.Empty;
+
 		public required string IdentityUserId { get; set; } =string.Empty;
 
+		[Required]
 		[ForeignKey(nameof(IdentityUserId))]
-		public required IdentityUser IdentityUser { get; set; } = null!;
+		public  IdentityUser IdentityUser { get; set; } = null!;
 
 		public List<Play> FavouritePlays { get; set; } = new List<Play>();
 

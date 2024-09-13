@@ -14,11 +14,13 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required string Title { get; set; } = string.Empty;
 
+		public required string Genre { get; set; } = string.Empty;
+
 		public required string Description { get; set; } = string.Empty;
 
 		public required List<string> PlayImagesURLs { get; set; } = new List<string>();
 
-		public required List<string> PlayVideosURLs { get; set; } = new List<string>();
+		public  List<string> PlayVideosURLs { get; set; } = new List<string>();
 
 		public required string Location { get; set; } = string.Empty;
 
@@ -26,14 +28,14 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required string TicketURL { get; set; } = string.Empty;
 
-		public required ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+		public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
 		public required ICollection<Actor> Actors { get; set; } = new HashSet<Actor>();
 
-		public required ICollection<ApplicationUser> ApplicationUsersFavouritePlays { get; set; } = new HashSet<ApplicationUser>();
-		public required ICollection<ApplicationUser> ApplicationUsersLikedPlays { get; set; } = new HashSet<ApplicationUser>();
-		public required ICollection<ApplicationUser> ApplicationUsersGoingToPlays { get; set; } = new HashSet<ApplicationUser>();
-		public required ICollection<ApplicationUser> ApplicationUsersWatchedPlays { get; set; } = new HashSet<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersFavouritePlays { get; set; } = new HashSet<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersLikedPlays { get; set; } = new HashSet<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersGoingToPlays { get; set; } = new HashSet<ApplicationUser>();
+		public  ICollection<ApplicationUser> ApplicationUsersWatchedPlays { get; set; } = new HashSet<ApplicationUser>();
 
 
 
