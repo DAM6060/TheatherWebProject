@@ -7,9 +7,9 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 		[Key]
 		public int Id { get; set; }
 
-		public required string NameFirst { get; set; } =string.Empty;
+		public required string FirstName { get; set; } =string.Empty;
 
-		public required string NameLast { get; set; } = string.Empty;
+		public required string LastName { get; set; } = string.Empty;
 
 		public required string Description { get; set; } = string.Empty;
 
