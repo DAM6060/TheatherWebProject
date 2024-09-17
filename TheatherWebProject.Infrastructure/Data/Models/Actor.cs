@@ -17,10 +17,5 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public List<ActorPlay> ActorsPlays { get; set; } = new List<ActorPlay>();
 
-
-
-
-
-		
 	}
 }

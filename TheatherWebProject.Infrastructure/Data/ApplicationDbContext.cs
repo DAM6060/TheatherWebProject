@@ -52,6 +52,11 @@ namespace TheatherWebProject.Data
 				.WithMany(p => p.ApplicationUsersWatchedPlays)
 				.UsingEntity(j => j.ToTable("ApplicationUserWatchedPlays"));
 
+			foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+			{
+				relationship.DeleteBehavior = DeleteBehavior.Restrict;
+			}
+
 			builder.ApplyConfiguration(new IdentityUserConfiguration());
 			builder.ApplyConfiguration(new ApplicationUserConfiguration());
 			builder.ApplyConfiguration(new ActorConfiguration());
