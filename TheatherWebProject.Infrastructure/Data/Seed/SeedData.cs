@@ -113,7 +113,8 @@ namespace TheatherWebProject.Infrastructure.Data.Seed
 				Location = "Opera Varna, CenterOdesos, pl. \"Nezavisimost\" 1, 9000 Varna",
 				DateAndTime = new DateTime(2025, 12, 15, 19, 30, 0),
 				TicketURL = "https://www.eventim.bg/bg/",
-				Genre = "Comedy"
+				Genre = "Comedy",
+				Town ="Sofia"
 
 			};
 		}

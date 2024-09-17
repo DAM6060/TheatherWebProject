@@ -24,6 +24,8 @@ namespace TheatherWebProject.Infrastructure.Data.Models
 
 		public required string Location { get; set; } = string.Empty;
 
+		public required string Town { get; set; } = string.Empty;
+
 		public required DateTime DateAndTime { get; set; }
 
 		public required string TicketURL { get; set; } = string.Empty;

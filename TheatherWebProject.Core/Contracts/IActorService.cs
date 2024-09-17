@@ -11,5 +11,9 @@ namespace TheatherWebProject.Core.Contracts
 		Task DeleteAsync(int actorId);
 
 		Task EditAsync(int actorId, ActorFormModel model);
+
+		Task<bool> ExistsByIdAsync(int actorId);
+
+		Task<ActorViewModel> GetDetailsByIdAsync(int actorId);
 	}
 }
