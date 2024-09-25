@@ -88,11 +88,16 @@ namespace TheatherWebProject.Core.Services
                 play.Town = model.Town;
 
                 play.ActorsPlays.Clear();
+				await _repository.SaveChangesAsync();
 
-                AddActorsToPlay(playId, model.ActorsIds);
+				AddActorsToPlay(playId, model.ActorsIds);
 
                 await _repository.SaveChangesAsync();
             }
+            else
+            {
+				throw new InvalidOperationException("Play not found");
+			}
         }
 
         public Task<bool> ExistsById(int playId)
@@ -111,13 +116,12 @@ namespace TheatherWebProject.Core.Services
                 .Where(p => p.ActorsPlays.Any(ap => ap.ActorId == actorId))
                 .Select(p => new PlayServiceModel
                 {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Description = p.Description,
-                    Genre = p.Genre,
-                    ImagesURLs = p.PlayImagesURLs.First()
-                    
-                }).ToListAsync();
+					Id = p.Id,
+					Title = p.Title,
+					Description = p.Description,
+					Genre = p.Genre,
+					ImagesURL = p.PlayImagesURLs.FirstOrDefault() ?? string.Empty
+				}).ToListAsync();
         }
 
         public async Task<PlayViewModel> GetByIdAsync(int playId)

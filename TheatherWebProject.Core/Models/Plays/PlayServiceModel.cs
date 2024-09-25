@@ -16,7 +16,7 @@ namespace TheatherWebProject.Core.Models.Plays
 
 		public string Genre { get; set; } = string.Empty;
 
-		public string ImagesURLs { get; set; } = string.Empty;
+		public string ImagesURL { get; set; } = string.Empty;
 	}
 
 }
