@@ -123,6 +123,20 @@ namespace TheatherWebProject.Tests
 			Assert.That(await _repository.AllAsReadOnly<Actor>().CountAsync(), Is.EqualTo(0));
 		}
 		[Test]
+		public async Task DeleteAsync_WithValidData_ShouldDeleteActorPlays()
+		{
+			await _actorService.DeleteAsync(1);
+
+			Assert.That(await _repository.AllAsReadOnly<ActorPlay>().CountAsync(), Is.EqualTo(0));
+		}
+		[Test]
+		public async Task DeleteAsync_WithValidData_ShouldNotDeletePlaysData()
+		{
+			await _actorService.DeleteAsync(1);
+
+			Assert.That(await _repository.AllAsReadOnly<Play>().CountAsync(), Is.EqualTo(2));
+		}
+		[Test]
 		public async Task EditAsync_WithValidData_ShouldEditActor()
 		{
 			var actorFormModel = new ActorFormModel
