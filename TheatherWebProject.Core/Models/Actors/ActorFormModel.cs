@@ -14,6 +14,6 @@ namespace TheatherWebProject.Core.Models.Actors
 
         public string Description { get; set; } = string.Empty;
 
-        public string ActorImageUrl { get; set; } = string.Empty;
+        public List<string> ActorImageUrls { get; set; } = new List<string>();
     }
 }

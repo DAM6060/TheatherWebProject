@@ -23,7 +23,7 @@ namespace TheatherWebProject.Core.Services
 				FirstName = model.FirstName,
 				LastName = model.LastName,
 				Description = model.Description,
-				ActorImageURL = model.ActorImageUrl
+				ActorImageURLs = model.ActorImageUrls
 			};
 
 			await _repository.AddAsync(actor);
@@ -35,6 +35,11 @@ namespace TheatherWebProject.Core.Services
 
 		public async Task DeleteAsync(int actorId)
 		{
+			await _repository.All<ActorPlay>()
+				.Where(ap => ap.ActorId == actorId)
+				.ForEachAsync(ap => _repository
+				.DeleteAsync<ActorPlay>(actorId));
+
 			await _repository.DeleteAsync<Actor>(actorId);
 			await _repository.SaveChangesAsync();
 		}
@@ -50,7 +55,7 @@ namespace TheatherWebProject.Core.Services
 				actor.FirstName = model.FirstName;
 				actor.LastName = model.LastName;
 				actor.Description = model.Description;
-				actor.ActorImageURL = model.ActorImageUrl; 
+				actor.ActorImageURLs = model.ActorImageUrls; 
 
 				await _repository.SaveChangesAsync();
 			}
@@ -61,22 +66,42 @@ namespace TheatherWebProject.Core.Services
 
 		}
 
-		public async Task<IEnumerable<ActorViewModel>> GetAllAsync()
+		public async Task<bool> ExistsByIdAsync(int actorId)
+		{
+			return await _repository.AllAsReadOnly<Actor>().AnyAsync(a => a.Id == actorId);
+		}
+
+		public async Task<IEnumerable<ActorServiceModel>> GetAllAsync()
+		{
+			return await _repository.AllAsReadOnly<Actor>().Select(a => new ActorServiceModel
+			{
+				Id = a.Id,
+				FirstName = a.FirstName,
+				LastName = a.LastName,
+				Description = a.Description,
+				ActorImageUrl = a.ActorImageURLs.FirstOrDefault() ?? string.Empty
+			}).ToListAsync();
+			
+
+		}
+
+		public async Task<ActorViewModel> GetDetailsByIdAsync(int actorId)
 		{
 			return await _repository.AllAsReadOnly<Actor>()
+				.Where(a => a.Id == actorId)
 				.Select(a => new ActorViewModel
 				{
 					Id = a.Id,
 					FirstName = a.FirstName,
 					LastName = a.LastName,
 					Description = a.Description,
-					ActorImageUrl = a.ActorImageURL,
+					ActorImageUrls = a.ActorImageURLs,
 					actingIn = a.ActorsPlays.Select(ap => new PlayServiceModel
 					{
 						Id = ap.Play.Id,
 						Title = ap.Play.Title,
 					})
-				}).ToListAsync();
+				}).FirstAsync();			 
 		}
 	}
 }

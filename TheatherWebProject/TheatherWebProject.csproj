@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,6 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-TheatherWebProject-4fa6e2f7-6fd1-443b-8dc0-53da69bad93c</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Images\153265986_2893861524220139_5094173891309400300_n.jpg" />
+    <Content Remove="wwwroot\Images\AlexDimitrov.jpg" />
+    <Content Remove="wwwroot\Images\dyslexia card.jpg" />
+    <Content Remove="wwwroot\Images\IMG_0843(i).jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
@@ -16,6 +23,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="NUnit" Version="4.2.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +33,13 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\153265986_2893861524220139_5094173891309400300_n.jpg" />
+    <None Include="wwwroot\Images\AlexDimitrov.jpg" />
+    <None Include="wwwroot\Images\dyslexia card.jpg" />
+    <None Include="wwwroot\Images\IMG_0843(i).jpg" />
   </ItemGroup>
 
 </Project>
