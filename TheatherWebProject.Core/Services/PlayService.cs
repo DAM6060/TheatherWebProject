@@ -100,7 +100,7 @@ namespace TheatherWebProject.Core.Services
 			}
         }
 
-        public Task<bool> ExistsById(int playId)
+        public Task<bool> ExistsByIdAsync(int playId)
         {
             return _repository.AllAsReadOnly<Play>().AnyAsync(p => p.Id == playId);
         }

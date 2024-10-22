@@ -25,5 +25,21 @@ namespace TheatherWebProject.Controllers
 
 			return View(actors);
 		}
+
+		public async Task<IActionResult> Details(int id)
+		{
+			if (await _actorService.ExistsByIdAsync(id))
+			{
+				var actor = await _actorService.GetDetailsByIdAsync(id);
+				return View(actor);
+			}
+			else
+			{
+				return NotFound();
+			}
+
+			
+		}
+
 	}
 }

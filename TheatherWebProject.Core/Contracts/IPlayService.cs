@@ -12,7 +12,7 @@ namespace TheatherWebProject.Core.Contracts
 
 		Task<PlayViewModel> GetByIdAsync(int playId);
 
-		Task<bool> ExistsById(int playId);
+		Task<bool> ExistsByIdAsync(int playId);
 
 		Task<PlayQueryModel> GetAllAsync(
 			string? locationFilter = null,
