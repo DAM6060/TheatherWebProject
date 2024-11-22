@@ -70,7 +70,7 @@ namespace TheatherWebProject.Core.Services
 				comment.Content = model.Content;
 				comment.CreatedOn = model.CreatedOn;
 
-				_repository.SaveChangesAsync();
+				await _repository.SaveChangesAsync();
 			}
 			else
 			{
@@ -90,7 +90,14 @@ namespace TheatherWebProject.Core.Services
 				.Where(c => c.PlayId == playId)
 				.Select(c => new CommentViewModel
 				{
-					
+					Id = c.Id,
+					Content = c.Content,
+					CreatedOn = c.CreatedOn,
+					PlayId = c.PlayId,
+					PlayName = c.Play.Title,
+					ApplicationUserId = c.ApplicationUserId,
+					ApplicationUserDisplayName = c.User.DisplayName
+
 				})
 				.ToListAsync();
 
