@@ -120,13 +120,13 @@ namespace TheatherWebProject.Tests
 		[Test]
 		public async Task ExistsById_WithValidData_ShouldReturnTrue()
 		{
-			var result = await _playService.ExistsById(1);
+			var result = await _playService.ExistsByIdAsync(1);
 			Assert.That(result, Is.True);
 		}
 		[Test]
 		public async Task ExistsById_WithInvalidData_ShouldReturnFalse()
 		{
-			var result = await _playService.ExistsById(3);
+			var result = await _playService.ExistsByIdAsync(3);
 			Assert.That(result, Is.False);
 		}
 		[Test]
@@ -196,14 +196,14 @@ namespace TheatherWebProject.Tests
 		public async Task DeleteAsync_WithValidData_ShouldDeletePlay()
 		{
 			await _playService.DeleteAsync(1);
-			var result = await _playService.ExistsById(1);
+			var result = await _playService.ExistsByIdAsync(1);
 			Assert.That(result, Is.False);
 		}
 		[Test]
 		public async Task DeleteAsync_WithInvalidData_ShouldDoNothing()
 		{
 			await _playService.DeleteAsync(3);
-			var result = await _playService.ExistsById(3);
+			var result = await _playService.ExistsByIdAsync(3);
 			Assert.That(result, Is.False);
 		}
 		[Test]
