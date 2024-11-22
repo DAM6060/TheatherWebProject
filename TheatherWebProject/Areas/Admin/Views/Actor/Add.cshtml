@@ -1,0 +1,79 @@
+﻿@model ActorFormModel
+
+
+<h1>Add actor</h1>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" id="ImageURLsContainer">
+        <div class="form-group" id="ImageURLField">
+            <label asp-for="ActorImageUrls"></label>
+            <input type="url" asp-for="ActorImageUrls" class="form-control" value=""/>
+            <span asp-validation-for="ActorImageUrls" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="button" id="addImageUrl">Add Image URL</button>
+
+    <div class="form-group" id="addPlayActedInContainer">
+        <div class="form-group" id="addPlayActedInField">
+            <label asp-for="PlaysIds"></label>
+            <select asp-for="PlaysIds" class="form-control" />
+            @foreach (var play in Model.AllPlaysDropDown)
+            {
+                <option value="@play.Id">@play.Title</option>
+            })
+            <span asp-validation-for="PlaysIds" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="button" id="addPlayActedIn">Add play to actor</button>
+    <button type="submit" class="btn btn-primary">Add Actor</button>
+</form>
+
+<script>
+    document.getElementById("addImageUrl").addEventListener("click", function () {
+        var container = document.getElementById("ImageURLsContainer");
+        var inputField = document.getElementById("ImageURLField").cloneNode(true);
+        
+        
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove Field";
+        removeButton.addEventListener("click", function () {
+            inputField.remove();
+        });
+
+        inputField.appendChild(removeButton);
+        container.appendChild(inputField);
+
+    });
+    document.getElementById("addPlayActedIn").addEventListener("click", function () {
+        var container = document.getElementById("addPlayActedInContainer");
+        var inputField = document.getElementById("addPlayActedInField").cloneNode(true);
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove Field";
+        removeButton.addEventListener("click", function () {
+            inputField.remove();
+        });
+
+
+        container.appendChild(inputField);
+    });
+
+</script>
+
+
