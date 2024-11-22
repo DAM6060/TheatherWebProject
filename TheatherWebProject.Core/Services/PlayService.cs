@@ -124,6 +124,20 @@ namespace TheatherWebProject.Core.Services
 				}).ToListAsync();
         }
 
+        public async Task<List<PlayServiceModel>> GetAllPlayServiceModelAsync()
+        {
+            return await _repository.AllAsReadOnly<Play>()
+                .Select(p => new PlayServiceModel
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Description = p.Description,
+                    Genre = p.Genre,
+                    ImagesURL = p.PlayImagesURLs.FirstOrDefault() ?? string.Empty
+                }).ToListAsync();
+
+        }
+
         public async Task<PlayViewModel> GetByIdAsync(int playId)
         {
             return await _repository.AllAsReadOnly<Play>().Where(p => p.Id == playId)
