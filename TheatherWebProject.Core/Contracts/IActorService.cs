@@ -15,5 +15,7 @@ namespace TheatherWebProject.Core.Contracts
 		Task<bool> ExistsByIdAsync(int actorId);
 
 		Task<ActorViewModel> GetDetailsByIdAsync(int actorId);
-	}
+
+		Task<ActorFormModel> GetActorFromModelAsync(int actorId);
+    }
 }

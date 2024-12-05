@@ -71,7 +71,29 @@ namespace TheatherWebProject.Core.Services
 			return await _repository.AllAsReadOnly<Actor>().AnyAsync(a => a.Id == actorId);
 		}
 
-		public async Task<IEnumerable<ActorServiceModel>> GetAllAsync()
+        public async Task<ActorFormModel> GetActorFromModelAsync(int actorId)
+        {
+            var model = await _repository.AllAsReadOnly<Actor>()
+                .Where(a => a.Id == actorId)
+                .Select(a => new ActorFormModel
+                {
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Description = a.Description,
+                    ActorImageUrls = a.ActorImageURLs,
+                    PlaysIds = a.ActorsPlays.Select(ap => ap.PlayId).ToList()
+
+                }).FirstOrDefaultAsync();
+
+            if (model == null)
+            {
+                throw new InvalidOperationException("Actor not found");
+            }
+			else { return model; }
+
+        }
+
+        public async Task<IEnumerable<ActorServiceModel>> GetAllAsync()
 		{
 			return await _repository.AllAsReadOnly<Actor>().Select(a => new ActorServiceModel
 			{
