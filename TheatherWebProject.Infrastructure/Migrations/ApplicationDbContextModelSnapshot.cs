@@ -203,15 +203,15 @@ namespace TheatherWebProject.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "450b74ae-9605-49fc-b053-7e59304405ee",
+                            ConcurrencyStamp = "f862996f-63d7-47f0-8b92-c854f61ad5c7",
                             Email = "ddimitar98@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DDIMITAR98@GMAIL.COM",
                             NormalizedUserName = "ddimitar98@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPnjse6COBQQgQZRGPfdQmeO4mO3nRAYbOKnmv82yIibD71g9ICxbAMlu/WrRmbp6Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKi+N8ekJVKVEbYiESFJH59d4MfRG/TM4f33MjFvpzIBQ8uwFq4HG7cm7o32GhI4OQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b0301dda-61b6-43cb-a3ce-b913bebfa29d",
+                            SecurityStamp = "cf60fee4-7db7-4eb6-ac91-60f35881ce45",
                             TwoFactorEnabled = false,
                             UserName = "ddimitar98@gmail.com"
                         },
@@ -219,15 +219,15 @@ namespace TheatherWebProject.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "388a489b-3159-4bf9-946a-a2aad6b35320",
+                            ConcurrencyStamp = "e636e5c5-f452-4a3e-a996-311e5f7aa2e1",
                             Email = "varnasharks.afc@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM",
                             NormalizedUserName = "VARNASHARKS.AFC@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKKWGLWLMlmffBVWF9wpaSNSSZ5v9gg5lbuCc2JrliUmm2I9KiPmxiJ5QC6pSF5yag==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIJFBM40Wc9Iw1TiRxUSoowHCN1yDsMNetv3dnzheOoScKXodFTUMxus/jxMF+851w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1c4df79a-7d85-4588-a355-1095b67fed11",
+                            SecurityStamp = "0039cc68-3f8d-4a24-b35c-58d3ad14223f",
                             TwoFactorEnabled = false,
                             UserName = "varnasharks.afc@gmail.com"
                         });
@@ -326,7 +326,7 @@ namespace TheatherWebProject.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ActorImageURL")
+                    b.Property<string>("ActorImageURLs")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -350,7 +350,7 @@ namespace TheatherWebProject.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ActorImageURL = "C:\\Users\\ddimi\\source\\repos\\TheatherWebProject\\TheatherWebProject.Infrastructure\\Data\\LocalImageSotrage\\153265986_2893861524220139_5094173891309400300_n.jpg",
+                            ActorImageURLs = "[\"/Images/153265986_2893861524220139_5094173891309400300_n.jpg\"]",
                             Description = "Alex Dimitrova is a young and talented actor who has been in the industry for 5 years. She has starred in a number of successful films and TV shows and has received critical acclaim for her performances. She is known for her versatility and ability to bring depth and emotion to her characters. Alex is a dedicated and hard-working actor who is always looking to challenge herself and push the boundaries of her craft. She is passionate about her work and is committed to delivering the best possible performance in every role she takes on.",
                             FirstName = "Alex",
                             LastName = "Dimitrova"
@@ -505,7 +505,7 @@ namespace TheatherWebProject.Infrastructure.Migrations
                             Description = "Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and along with Hamlet, is one of his most frequently performed plays. Today, the title characters are regarded as archetypal young lovers.",
                             Genre = "Comedy",
                             Location = "Opera Varna, CenterOdesos, pl. \"Nezavisimost\" 1, 9000 Varna",
-                            PlayImagesURLs = "[\"C:\\\\Users\\\\ddimi\\\\source\\\\repos\\\\TheatherWebProject\\\\TheatherWebProject.Infrastructure\\\\Data\\\\LocalImageSotrage\\\\IMG_0843(i).jpg\",\"C:\\\\Users\\\\ddimi\\\\source\\\\repos\\\\TheatherWebProject\\\\TheatherWebProject.Infrastructure\\\\Data\\\\LocalImageSotrage\\\\dyslexia card.jpg\"]",
+                            PlayImagesURLs = "[\"/Images/IMG_0843(i).jpg\",\"/Images/dyslexia card.jpg\"]",
                             PlayVideosURLs = "[\"https://www.youtube.com/watch?v=CCI3XPFjqn8\"]",
                             TicketURL = "https://www.eventim.bg/bg/",
                             Title = "Romeo and Juliet",
@@ -518,13 +518,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("ApplicationUsersFavouritePlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", null)
                         .WithMany()
                         .HasForeignKey("FavouritePlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -533,13 +533,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("ApplicationUsersLikedPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", null)
                         .WithMany()
                         .HasForeignKey("LikedPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -548,13 +548,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("ApplicationUsersGoingToPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", null)
                         .WithMany()
                         .HasForeignKey("GoingToPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -563,13 +563,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("ApplicationUsersWatchedPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", null)
                         .WithMany()
                         .HasForeignKey("WatchedPlaysId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -629,13 +629,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Actor", "Actor")
                         .WithMany("ActorsPlays")
                         .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", "Play")
                         .WithMany("ActorsPlays")
                         .HasForeignKey("PlayId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Actor");
@@ -648,7 +648,7 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("IdentityUser");
@@ -659,13 +659,13 @@ namespace TheatherWebProject.Infrastructure.Migrations
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TheatherWebProject.Infrastructure.Data.Models.Play", "Play")
                         .WithMany("Comments")
                         .HasForeignKey("PlayId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Play");

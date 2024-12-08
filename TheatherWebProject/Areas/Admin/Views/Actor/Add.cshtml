@@ -1,0 +1,54 @@
+﻿@model ActorFormModel
+
+
+<h1>Add actor</h1>
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="ActorImageUrls"></label>
+            <input type="url" asp-for="ActorImageUrls" class="form-control" />
+            <span asp-validation-for="ActorImageUrls" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <button type="button" class="clone-Previous-Sibling">Add Image URL</button>
+
+
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="PlaysIds"></label>
+            <select asp-for="PlaysIds" class="form-control" />
+            @foreach (var play in Model.AllPlaysDropDown)
+            {
+                <option value="@play.Id">@play.Title</option>
+            })
+            <span asp-validation-for="PlaysIds" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="button" class="clone-Previous-Sibling">Add play to actor</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+</form>
+
+

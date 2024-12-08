@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using TheatherWebProject.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
@@ -34,9 +29,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+                        name: "Areas",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+                name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
 
+    endpoints.MapRazorPages();
+});
+
+
+await app.CreatAdminRoleAsync();
 await app.RunAsync();

@@ -12,6 +12,11 @@ namespace TheatherWebProject.Data
 			: base(options)
 		{
 		}
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.EnableSensitiveDataLogging();
+			base.OnConfiguring(optionsBuilder);
+		}
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -52,10 +57,10 @@ namespace TheatherWebProject.Data
 				.WithMany(p => p.ApplicationUsersWatchedPlays)
 				.UsingEntity(j => j.ToTable("ApplicationUserWatchedPlays"));
 
-			foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-			{
-				relationship.DeleteBehavior = DeleteBehavior.Restrict;
-			}
+			//foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+			//{
+			//	relationship.DeleteBehavior = DeleteBehavior.Restrict;
+			//}
 
 			builder.ApplyConfiguration(new IdentityUserConfiguration());
 			builder.ApplyConfiguration(new ApplicationUserConfiguration());
@@ -70,7 +75,7 @@ namespace TheatherWebProject.Data
 
 		public DbSet<Play> Plays { get; set; } = null!;
 
-		public DbSet<Actor> Actors { get; set; } = null!;
+		public virtual DbSet<Actor> Actors { get; set; } = null!;
 
 		public DbSet<Comment> Comments { get; set; } = null!;
 

@@ -6,7 +6,7 @@ namespace TheatherWebProject.Core.Contracts
 	{
 		Task<int> CreateAsync(ActorFormModel model);
 
-		Task<IEnumerable<ActorViewModel>> GetAllAsync();
+		Task<IEnumerable<ActorServiceModel>> GetAllAsync();
 		
 		Task DeleteAsync(int actorId);
 
@@ -15,5 +15,7 @@ namespace TheatherWebProject.Core.Contracts
 		Task<bool> ExistsByIdAsync(int actorId);
 
 		Task<ActorViewModel> GetDetailsByIdAsync(int actorId);
-	}
+
+		Task<ActorFormModel> GetActorFromModelAsync(int actorId);
+    }
 }

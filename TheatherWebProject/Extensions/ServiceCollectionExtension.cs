@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TheatherWebProject.Core.Contracts;
+using TheatherWebProject.Core.Services;
 using TheatherWebProject.Data;
+using TheatherWebProject.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -8,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
 	{
 		public static IServiceCollection AddApplicationServices (this IServiceCollection services)
 		{
+			services.AddScoped<IActorService, ActorService>();
+			services.AddScoped<IPlayService, PlayService>();
 			return services;
 		}
 
@@ -17,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			//add Repository here
+			services.AddScoped<IRepository, Repository>();
 
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
